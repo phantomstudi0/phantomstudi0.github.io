@@ -1,6 +1,7 @@
 'use client'
 import { useT } from '@/lib/i18n'
 import Reveal from '@/components/ui/Reveal'
+import ShaderBackground from '@/components/ui/ShaderBackground'
 
 export default function Hero() {
   const { t } = useT()
@@ -13,8 +14,21 @@ export default function Hero() {
   ]
 
   return (
-    <section style={{ paddingTop: 120, paddingBottom: 80, position: 'relative' }}>
-      <div className="ph-wrap">
+    <section style={{ paddingTop: 120, paddingBottom: 80, position: 'relative', overflow: 'hidden' }}>
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        opacity: 0.55,
+        WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 35%, #000 70%)',
+        maskImage: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 35%, #000 70%)',
+      }}>
+        <ShaderBackground />
+      </div>
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'linear-gradient(180deg, transparent 70%, var(--bg) 100%)',
+      }} />
+
+      <div className="ph-wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{
           position: 'absolute', top: -80, left: '50%', transform: 'translateX(-50%)',
           width: 800, height: 500,
