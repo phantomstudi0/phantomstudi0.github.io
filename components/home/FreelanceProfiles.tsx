@@ -30,6 +30,21 @@ const PLATFORMS: Platform[] = [
     description: { ru: 'Русскоязычная биржа фриланса', en: 'Russian freelance marketplace' },
   },
   {
+    name: 'Хабр Фриланс',
+    handle: null,
+    url: null,
+    color: '#E8162B',
+    active: false,
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="#E8162B" />
+        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle"
+          fill="white" fontSize="13" fontWeight="800" fontFamily="Outfit, sans-serif">Хб</text>
+      </svg>
+    ),
+    description: { ru: 'IT-сообщество и фриланс', en: 'IT community & freelance' },
+  },
+  {
     name: 'FL.ru',
     handle: null,
     url: null,
