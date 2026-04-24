@@ -3,10 +3,30 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Providers from '@/lib/Providers'
+import ScrollProgress from '@/components/ui/ScrollProgress'
 
 export const metadata: Metadata = {
   title: 'Phantom Studio — Сайты, Telegram-боты, CRM и автоматизация',
   description: 'IT-команда полного цикла. Сайты, SaaS, Telegram-боты, CRM, мобильные приложения и автоматизация — от идеи до деплоя.',
+  keywords: ['веб-разработка', 'telegram бот', 'crm', 'saas', 'next.js', 'flutter', 'автоматизация', 'фриланс', 'разработка сайтов'],
+  authors: [{ name: 'PhantomTeam' }],
+  openGraph: {
+    title: 'Phantom Studio — Сайты, Telegram-боты, CRM и автоматизация',
+    description: 'IT-команда полного цикла. Сайты, SaaS, Telegram-боты, CRM, мобильные приложения и автоматизация — от идеи до деплоя.',
+    type: 'website',
+    locale: 'ru_RU',
+    siteName: 'Phantom Studio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Phantom Studio — IT-команда полного цикла',
+    description: 'Сайты, SaaS, Telegram-боты, CRM, мобильные приложения и автоматизация — от идеи до деплоя.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 }
 
 const themeInitScript = `
@@ -35,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <Providers>
+          <ScrollProgress />
           <div className="glow-top" />
           <div className="glow-left" />
           <div className="noise" />

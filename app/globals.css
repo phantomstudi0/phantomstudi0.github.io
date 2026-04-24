@@ -195,6 +195,14 @@ body {
   color: transparent;
 }
 
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - var(--marquee-gap, 16px))); }
+}
+.marquee-pause-on-hover:hover {
+  animation-play-state: paused !important;
+}
+
 @keyframes ph-blink {
   0%, 100% { opacity: .5 }
   50%      { opacity: 1 }
@@ -213,6 +221,8 @@ body {
 /* ── Hero / CTA shader switch by theme ── */
 .shader-dark  { display: block !important; }
 .shader-light { display: none  !important; }
+[data-theme="dark"]  .shader-dark  { display: block !important; }
+[data-theme="dark"]  .shader-light { display: none  !important; }
 [data-theme="light"] .shader-dark  { display: none  !important; }
 [data-theme="light"] .shader-light { display: block !important; }
 /* Dark-theme vignette only visible in dark theme */

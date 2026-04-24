@@ -1,11 +1,95 @@
 'use client'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { useT } from '@/lib/i18n'
 import Reveal from '@/components/ui/Reveal'
 import ShaderBackground from '@/components/ui/ShaderBackground'
 import CloudsBackground from '@/components/ui/CloudsBackground'
+import FloatingParticles from '@/components/ui/FloatingParticles'
+import { MorphingText } from '@/components/ui/MorphingText'
+import { useCountUp } from '@/hooks/useCountUp'
 
+/* ── Magnetic button ───────────────────────────────────────── */
+function MagneticButton({ children, style, onMouseEnter, onMouseLeave, href }: {
+  children: React.ReactNode
+  style: React.CSSProperties
+  onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>
+  onMouseLeave?: React.MouseEventHandler<HTMLAnchorElement>
+  href: string
+}) {
+  const ref = useRef<HTMLAnchorElement>(null)
+
+  const handleMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.22
+    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.22
+    el.style.transform = `translate(${dx}px, ${dy}px)`
+  }, [])
+
+  const handleLeave = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = ref.current
+    if (!el) return
+    el.style.transform = 'translate(0,0)'
+    onMouseLeave?.(e)
+  }, [onMouseLeave])
+
+  const handleEnter = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    onMouseEnter?.(e)
+  }, [onMouseEnter])
+
+  return (
+    <a
+      ref={ref}
+      href={href}
+      style={{ ...style, transition: 'transform .15s ease, box-shadow .2s, background .2s, border-color .2s' }}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      onMouseEnter={handleEnter}
+    >
+      {children}
+    </a>
+  )
+}
+
+/* ── Animated stat number ──────────────────────────────────── */
+function StatNumber({ raw, color, triggered }: { raw: string; color: string; triggered: boolean }) {
+  const match = raw.match(/^(\d+)(.*)$/)
+  const num = match ? parseInt(match[1]) : null
+  const suffix = match ? match[2] : null
+  const counted = useCountUp(num ?? 0, 1600, triggered && num !== null)
+
+  if (num === null) {
+    return <span style={{ color }}>{raw}</span>
+  }
+  return (
+    <span style={{ color }}>
+      {triggered ? counted : 0}{suffix}
+    </span>
+  )
+}
+
+/* ── Hero ──────────────────────────────────────────────────── */
 export default function Hero() {
-  const { t } = useT()
+  const { t, lang } = useT()
+
+  const MORPH_TEXTS = {
+    ru: ['Сайты', 'Telegram-боты', 'CRM-системы', 'SaaS платформы', 'Flutter Apps', 'Автоматизация'],
+    en: ['Websites', 'Telegram Bots', 'CRM Systems', 'SaaS Platforms', 'Flutter Apps', 'Automation'],
+  }
+  const [statsVisible, setStatsVisible] = useState(false)
+  const statsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = statsRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStatsVisible(true); obs.disconnect() } },
+      { threshold: 0.3 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   const STATS = [
     { n: t('hero.stat1.n'), l: t('hero.stat1.l'), color: '#6BA3FF' },
@@ -40,6 +124,9 @@ export default function Hero() {
         }}>
           <CloudsBackground />
         </div>
+
+        <FloatingParticles />
+
         <div aria-hidden className="hero-vignette-dark" style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(6,10,20,.45) 100%)',
@@ -91,16 +178,30 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={200}>
-            <p style={{
-              fontSize: 'clamp(1.05rem, 1.4vw, 1.35rem)',
-              color: 'var(--text-soft)',
-              lineHeight: 1.6,
-              maxWidth: 720,
-              whiteSpace: 'pre-line',
-              margin: 0,
-            }}>
-              {t('hero.subtitle')}
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 1.4vw, 1.35rem)',
+                color: 'var(--text-soft)',
+                lineHeight: 1.6,
+                maxWidth: 720,
+                whiteSpace: 'pre-line',
+                margin: 0,
+              }}>
+                {t('hero.subtitle')}
+              </p>
+              <MorphingText
+                texts={MORPH_TEXTS[lang]}
+                style={{
+                  height: '2.2rem',
+                  width: 320,
+                  fontSize: 'clamp(1rem, 1.3vw, 1.2rem)',
+                  fontWeight: 600,
+                  color: 'var(--accent)',
+                  letterSpacing: '-0.02em',
+                  textAlign: 'center',
+                }}
+              />
+            </div>
           </Reveal>
 
           <Reveal delay={280}>
@@ -109,35 +210,50 @@ export default function Hero() {
               flexWrap: 'wrap', justifyContent: 'center',
               marginTop: 12,
             }}>
-              <a href="#contact" style={{
-                background: 'var(--accent)', color: 'var(--btn-fg)',
-                padding: '14px 32px', borderRadius: 100,
-                fontSize: 14, fontWeight: 600, letterSpacing: '.01em',
-                textDecoration: 'none',
-                transition: 'transform .2s, box-shadow .2s',
-                boxShadow: '0 10px 30px rgba(var(--accent-rgb), .35)',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 40px rgba(var(--accent-rgb), .55)' }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(var(--accent-rgb), .35)' }}
+              <MagneticButton
+                href="#contact"
+                style={{
+                  background: 'var(--accent)', color: 'var(--btn-fg)',
+                  padding: '14px 32px', borderRadius: 100,
+                  fontSize: 14, fontWeight: 600, letterSpacing: '.01em',
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 30px rgba(var(--accent-rgb), .35)',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.boxShadow = '0 14px 40px rgba(var(--accent-rgb), .55)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(var(--accent-rgb), .35)'
+                }}
               >
                 {t('hero.cta')}
-              </a>
-              <a href="#projects" style={{
-                background: 'rgba(255,255,255,.04)',
-                color: 'var(--text)',
-                border: '1px solid rgba(var(--accent-rgb), .25)',
-                padding: '14px 28px', borderRadius: 100,
-                fontSize: 14, fontWeight: 500,
-                textDecoration: 'none',
-                transition: 'background .2s, border-color .2s',
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(var(--accent-rgb), .12)'; e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), .45)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.04)'; e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), .25)' }}
+              </MagneticButton>
+
+              <MagneticButton
+                href="#projects"
+                style={{
+                  background: 'rgba(255,255,255,.04)',
+                  color: 'var(--text)',
+                  border: '1px solid rgba(var(--accent-rgb), .25)',
+                  padding: '14px 28px', borderRadius: 100,
+                  fontSize: 14, fontWeight: 500,
+                  textDecoration: 'none',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'rgba(var(--accent-rgb), .12)'
+                  e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), .45)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,.04)'
+                  e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), .25)'
+                }}
               >
                 {t('hero.cta2')}
-              </a>
+              </MagneticButton>
             </div>
           </Reveal>
         </div>
@@ -182,7 +298,7 @@ export default function Hero() {
         }} />
         <div className="ph-wrap" style={{ position: 'relative', zIndex: 1 }}>
           <Reveal stagger delay={80}>
-            <div className="hero-stats" style={{
+            <div ref={statsRef} className="hero-stats" style={{
               display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
               gap: 1, background: 'var(--border)',
               border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden',
@@ -192,9 +308,9 @@ export default function Hero() {
                   <div style={{
                     fontFamily: 'Outfit, sans-serif',
                     fontSize: 40, fontWeight: 500, letterSpacing: -2, lineHeight: 1,
-                    marginBottom: 6, color: s.color,
+                    marginBottom: 6,
                   }}>
-                    {s.n}
+                    <StatNumber raw={s.n} color={s.color} triggered={statsVisible} />
                   </div>
                   <div style={{
                     fontSize: 11, color: 'var(--text-dim)',
