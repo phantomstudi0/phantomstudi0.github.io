@@ -35,10 +35,24 @@ export default function CTA() {
     setSending(true)
     setStatus('idle')
     try {
-      const r = await fetch('/api/contact', {
+      const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN
+      const CHAT_ID   = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID
+      const escape = (s: string) => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+      const text = [
+        '🔔 <b>Новая заявка с сайта</b>',
+        '',
+        `👤 <b>Имя:</b> ${escape(form.name)}`,
+        `📬 <b>Контакт:</b> ${escape(form.contact)}`,
+        `💰 <b>Бюджет:</b> ${escape(form.budget) || 'не указан'}`,
+        '',
+        `💬 <b>Задача:</b>`,
+        escape(form.message),
+      ].join('\n')
+
+      const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML', disable_web_page_preview: true }),
       })
       if (r.ok) {
         setStatus('ok')
