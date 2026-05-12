@@ -31,10 +31,10 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'FL.ru',
-    handle: null,
-    url: null,
+    handle: '@phantombuisnes',
+    url: 'https://www.fl.ru/users/phantombuisnes/portfolio/',
     color: '#FF6B35',
-    active: false,
+    active: true,
     icon: (
       <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
         <rect width="40" height="40" rx="10" fill="#FF6B35" />
@@ -61,10 +61,10 @@ const PLATFORMS: Platform[] = [
   },
   {
     name: 'Upwork',
-    handle: null,
-    url: null,
+    handle: '@phantomteam',
+    url: 'https://www.upwork.com/freelancers/~01cecb022f13956a35',
     color: '#6FDA44',
-    active: false,
+    active: true,
     icon: (
       <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
         <rect width="40" height="40" rx="10" fill="#6FDA44" />
