@@ -254,6 +254,36 @@ export default function Hero() {
               >
                 {t('hero.cta2')}
               </MagneticButton>
+
+              <MagneticButton
+                href="https://t.me/phantomteamdev"
+                style={{
+                  background: 'rgba(42,171,238,.10)',
+                  color: '#2AABEE',
+                  border: '1px solid rgba(42,171,238,.30)',
+                  padding: '14px 24px', borderRadius: 100,
+                  fontSize: 14, fontWeight: 500,
+                  textDecoration: 'none',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = 'rgba(42,171,238,.20)'
+                  e.currentTarget.style.borderColor = 'rgba(42,171,238,.55)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = 'rgba(42,171,238,.10)'
+                  e.currentTarget.style.borderColor = 'rgba(42,171,238,.30)'
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.23l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.983.329z"/>
+                </svg>
+                Telegram
+              </MagneticButton>
             </div>
           </Reveal>
         </div>
