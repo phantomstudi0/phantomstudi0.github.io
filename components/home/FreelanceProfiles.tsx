@@ -75,6 +75,22 @@ const PLATFORMS: Platform[] = [
     description: { ru: 'Топ платформа для IT', en: 'Top platform for IT freelancers' },
   },
   {
+    name: 'Telegram',
+    handle: '@phantomteamdev',
+    url: 'https://t.me/phantomteamdev',
+    color: '#2AABEE',
+    active: true,
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="#2AABEE" />
+        <path d="M8 20.5l4.5 1.5 2 5.5 3-3.5 5 3.5 5.5-15-20 8z" fill="white" opacity="0.5"/>
+        <path d="M8 20.5l20-8-5.5 15-5-3.5-3 3.5-2-5.5-4.5-1.5z" fill="none"/>
+        <path d="M9 20l19.5-7.5-5.5 14.5-4.5-3-3.5 3.5-1.5-5-4.5-2.5z" fill="white"/>
+      </svg>
+    ),
+    description: { ru: 'Наш канал — кейсы и новости', en: 'Our channel — cases & news' },
+  },
+  {
     name: 'Fiverr',
     handle: null,
     url: null,
