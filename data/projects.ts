@@ -206,6 +206,86 @@ export const PROJECTS: ProjectData[] = [
     liveUrl: 'https://04fashionstore.vercel.app/',
   },
 
+  // ── РЕАЛЬНЫЕ КЛИЕНТСКИЕ ПРОЕКТЫ ──
+  {
+    id: 'vadim-tamada',
+    featured: true,
+    category: 'landing',
+    badge: { ru: 'Лендинг · Ведущий · Production', en: 'Landing · Host · Production' },
+    title: 'Вадим Белоглазов',
+    shortDesc: {
+      ru: 'Сайт-визитка ведущего мероприятий из Калининграда. Свадьбы, корпоративы, юбилеи — всё на одной странице с формой заявки. Заточен под локальный SEO-поиск.',
+      en: 'Personal website for an event host from Kaliningrad. Weddings, corporate events, anniversaries — all on one page with a lead form. Optimized for local SEO.',
+    },
+    tags: ['Лендинг', 'SEO', 'Production'],
+    colors: ['#A78BFA', '#FF6B9D'],
+    demo: false,
+    demoNote: PROD_NOTE,
+    desc: {
+      ru: 'Задача: профессиональный сайт для тамады — показать услуги, создать доверие, получать заявки онлайн.\n\nРешение: одностраничный лендинг с описанием услуг (свадьбы, корпоративы, юбилеи), галерея мероприятий, отзывы клиентов, форма обратной связи. Оптимизирован под местный поиск в Калининграде.',
+      en: 'Task: a professional website for a toastmaster — showcase services, build trust, capture leads online.\n\nSolution: single-page landing with service descriptions (weddings, corporate, anniversaries), event gallery, client reviews, contact form. Optimized for local search in Kaliningrad.',
+    },
+    results: [
+      { n: { ru: 'Prod', en: 'Prod' }, l: { ru: 'живой сайт', en: 'live site' } },
+      { n: { ru: 'SEO', en: 'SEO' }, l: { ru: 'локальный поиск', en: 'local search' } },
+      { n: { ru: 'Mobile', en: 'Mobile' }, l: { ru: 'адаптив 100%', en: '100% responsive' } },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    liveUrl: 'https://vadim-beloglazov.ru/',
+  },
+  {
+    id: 'djobs-shop',
+    featured: true,
+    category: 'ecommerce',
+    badge: { ru: 'Лендинг · Электроника · Production', en: 'Landing · Electronics · Production' },
+    title: 'DJOBS Shop',
+    shortDesc: {
+      ru: 'Продающий лендинг для магазина электроники параллельного импорта. Apple, Sony, Dyson до 30% дешевле рынка. Сравнение цен, каталог по категориям, заявки через Telegram.',
+      en: 'Sales landing for a parallel import electronics shop. Apple, Sony, Dyson up to 30% below retail. Price comparison, category catalog, leads via Telegram.',
+    },
+    tags: ['Лендинг', 'Telegram', 'Production'],
+    colors: ['#2AABEE', '#6BA3FF'],
+    demo: false,
+    demoNote: PROD_NOTE,
+    desc: {
+      ru: 'Задача: продающий одностраничник для магазина параллельного импорта техники. Главная цель — убедить в легальности и выгоде, довести до заявки менеджеру.\n\nРешение: лендинг с таблицей сравнения цен, каталогом по категориям (iPhone, MacBook, Sony, Dyson), блоком "как мы работаем", FAQ и формой заявки. Все заявки идут напрямую менеджеру в Telegram.',
+      en: 'Task: a high-converting landing for a parallel import electronics shop. Main goal — convince on legality and savings, drive users to message the manager.\n\nSolution: landing with price comparison table, category catalog (iPhone, MacBook, Sony, Dyson), "how we work" block, FAQ and lead form. All leads go directly to the Telegram manager.',
+    },
+    results: [
+      { n: { ru: 'Prod', en: 'Prod' }, l: { ru: 'живой сайт', en: 'live site' } },
+      { n: { ru: '30%', en: '30%' }, l: { ru: 'выгода vs розница', en: 'vs retail price' } },
+      { n: { ru: 'TG', en: 'TG' }, l: { ru: 'воронка в Telegram', en: 'Telegram funnel' } },
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Telegram Bot API'],
+    liveUrl: 'https://djobs.shop/',
+  },
+  {
+    id: 'sport-nardy',
+    featured: true,
+    category: 'saas',
+    badge: { ru: 'Портал · Спорт · Production', en: 'Portal · Sport · Production' },
+    title: 'Федерация нард',
+    shortDesc: {
+      ru: 'Официальный портал Федерации нард Калининградской области. Календарь турниров, онлайн-регистрация участников, оплата взносов, расписание тренировок и профили спортсменов.',
+      en: 'Official portal for the Kaliningrad Region Backgammon Federation. Tournament calendar, online participant registration, fee payments, training schedule and athlete profiles.',
+    },
+    tags: ['Портал', 'Регистрация', 'Production'],
+    colors: ['#3DD68C', '#6BA3FF'],
+    demo: false,
+    demoNote: PROD_NOTE,
+    desc: {
+      ru: 'Задача: полноценный сайт спортивной организации — анонс соревнований, онлайн-запись участников, оплата взносов, новости, расписание тренировок.\n\nРешение: информационный портал с календарём турниров, формой регистрации участников с онлайн-оплатой взносов, расписанием секций, профилями топ-спортсменов, документами и новостями. Отдельная программа для пенсионеров "Балтийское долголетие".',
+      en: 'Task: a full-featured sports organization website — event announcements, online participant registration, fee payments, news, training schedule.\n\nSolution: information portal with tournament calendar, registration forms with online payment, section schedule, top athlete profiles, documents and news. Special "Baltic Longevity" program for seniors.',
+    },
+    results: [
+      { n: { ru: 'Prod', en: 'Prod' }, l: { ru: 'живой сайт', en: 'live site' } },
+      { n: { ru: 'Online', en: 'Online' }, l: { ru: 'регистрация и оплата', en: 'registration & pay' } },
+      { n: { ru: 'Portal', en: 'Portal' }, l: { ru: 'полный функционал', en: 'full features' } },
+    ],
+    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
+    liveUrl: 'https://sportnardy39.ru/',
+  },
+
   // ── НЕ-FEATURED (на /projects) ──
   {
     id: 'cryptopulse',
