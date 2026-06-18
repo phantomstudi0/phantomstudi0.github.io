@@ -171,7 +171,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                   padding: '11px 24px', borderRadius: 8,
                   fontSize: 13, textDecoration: 'none',
                 }}>
-                  {t('proj.demo')}
+                  {project.demo ? t('proj.demo') : t('proj.live')}
                 </a>
               )}
               <button onClick={onClose} style={{

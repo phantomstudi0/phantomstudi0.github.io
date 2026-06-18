@@ -129,7 +129,7 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: 'shotforge',
-    featured: true,
+    featured: false,
     category: 'ai',
     badge: { ru: 'AI · Видео', en: 'AI · Video' },
     title: 'ShotForge',
@@ -155,7 +155,7 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: 'eclipse-valhalla',
-    featured: true,
+    featured: false,
     category: 'landing',
     badge: { ru: 'Лендинг · Бренд', en: 'Landing · Brand' },
     title: 'Eclipse Valhalla',
@@ -181,7 +181,7 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: 'fashion-store',
-    featured: true,
+    featured: false,
     category: 'ecommerce',
     badge: { ru: 'E-commerce · Магазин', en: 'E-commerce · Store' },
     title: 'NOIRE',
