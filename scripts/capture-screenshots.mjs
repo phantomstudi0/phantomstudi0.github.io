@@ -33,6 +33,9 @@ const PROJECTS = [
   { slug: 'real-estate',           url: 'https://06realestate.vercel.app/' },
   { slug: 'saas-landing',          url: 'https://03saaslanding.vercel.app/' },
   { slug: 'landing-02',            url: 'https://02landing.vercel.app/' },
+  { slug: 'vadim-tamada',          url: 'https://vadim-beloglazov.ru/' },
+  { slug: 'djobs-shop',            url: 'https://djobs.shop/' },
+  { slug: 'sport-nardy',           url: 'https://sportnardy39.ru/' },
 ]
 
 const VIEWPORT = { width: 1280, height: 800 }
