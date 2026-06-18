@@ -45,36 +45,6 @@ const PLATFORMS: Platform[] = [
     description: { ru: 'Ведущая биржа фриланса РФ', en: 'Top Russian freelance exchange' },
   },
   {
-    name: 'Freelancer',
-    handle: null,
-    url: null,
-    color: '#29B2FE',
-    active: false,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-        <rect width="40" height="40" rx="10" fill="#29B2FE" />
-        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle"
-          fill="white" fontSize="13" fontWeight="800" fontFamily="Outfit, sans-serif">Fr</text>
-      </svg>
-    ),
-    description: { ru: 'Международная платформа', en: 'International freelance platform' },
-  },
-  {
-    name: 'Upwork',
-    handle: '@phantomteam',
-    url: 'https://www.upwork.com/freelancers/~01cecb022f13956a35',
-    color: '#6FDA44',
-    active: true,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-        <rect width="40" height="40" rx="10" fill="#6FDA44" />
-        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle"
-          fill="white" fontSize="13" fontWeight="800" fontFamily="Outfit, sans-serif">Up</text>
-      </svg>
-    ),
-    description: { ru: 'Топ платформа для IT', en: 'Top platform for IT freelancers' },
-  },
-  {
     name: 'Telegram',
     handle: '@phantomteamdev',
     url: 'https://t.me/phantomteamdev',
@@ -88,22 +58,7 @@ const PLATFORMS: Platform[] = [
         <path d="M9 20l19.5-7.5-5.5 14.5-4.5-3-3.5 3.5-1.5-5-4.5-2.5z" fill="white"/>
       </svg>
     ),
-    description: { ru: 'Наш канал — кейсы и новости', en: 'Our channel — cases & news' },
-  },
-  {
-    name: 'Fiverr',
-    handle: null,
-    url: null,
-    color: '#1DBF73',
-    active: false,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-        <rect width="40" height="40" rx="10" fill="#1DBF73" />
-        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle"
-          fill="white" fontSize="13" fontWeight="800" fontFamily="Outfit, sans-serif">Fi</text>
-      </svg>
-    ),
-    description: { ru: 'Глобальный маркетплейс услуг', en: 'Global services marketplace' },
+    description: { ru: 'Наш канал — здесь можно оформить заказ', en: 'Our channel — place your order here' },
   },
 ]
 
