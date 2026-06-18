@@ -45,6 +45,21 @@ const PLATFORMS: Platform[] = [
     description: { ru: 'Ведущая биржа фриланса РФ', en: 'Top Russian freelance exchange' },
   },
   {
+    name: 'Отзывы',
+    handle: '@reviewsphantomteam',
+    url: 'https://t.me/reviewsphantomteam',
+    color: '#F59E0B',
+    active: true,
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+        <rect width="40" height="40" rx="10" fill="#F59E0B" />
+        <text x="50%" y="57%" dominantBaseline="middle" textAnchor="middle"
+          fill="white" fontSize="20" fontFamily="Georgia, serif">★</text>
+      </svg>
+    ),
+    description: { ru: 'Отзывы наших клиентов в Telegram', en: 'Client reviews on Telegram' },
+  },
+  {
     name: 'Telegram',
     handle: '@phantomteamdev',
     url: 'https://t.me/phantomteamdev',
